@@ -21,7 +21,7 @@ while running:
             running = False
 
     # fill the screen with a color to wipe away anything from last frame
-    screen.fill("white")
+    screen.fill(graphic.Color("#FFFFFF"))
 
 
     armavir = graphic.image.load(os.path.join("stuff", "Armavir_in_Armenia.png"))
