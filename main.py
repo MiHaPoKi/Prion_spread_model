@@ -10,6 +10,7 @@ screen = graphic.display.set_mode((1280, 720))
 clock = graphic.time.Clock()
 running = True
 dt = 0
+spread = 1
 
 player_pos = graphic.Vector2(screen.get_width() / 2, screen.get_height() / 2)
 
@@ -26,17 +27,14 @@ while running:
 
     armavir = graphic.image.load(os.path.join("stuff", "Armavir_in_Armenia.png"))
     fon = screen.blit(armavir, (70, -220))
-    graphic.draw.circle(screen, "red", player_pos, 40)
+    graphic.draw.circle(screen, "red", player_pos, spread)
 
     keys = graphic.key.get_pressed()
     if keys[graphic.K_w]:
-        player_pos.y -= 300 * dt
+        spread *= 1.1 #* dt
     if keys[graphic.K_s]:
-        player_pos.y += 300 * dt
-    if keys[graphic.K_a]:
-        player_pos.x -= 300 * dt
-    if keys[graphic.K_d]:
-        player_pos.x += 300 * dt
+        spread /= 1.1 #* dt
+
 
     # flip() the display to put your work on screen
     graphic.display.flip()
@@ -44,6 +42,6 @@ while running:
     # limits FPS to 60
     # dt is delta time in seconds since last frame, used for framerate-
     # independent physics.
-    dt = clock.tick(60) / 1000
+    dt = clock.tick(60) #/ 1000
 
 graphic.quit()
